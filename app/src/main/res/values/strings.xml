@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Testchat</string>
+
+    <string name="permission_camera">камера</string>
+    <string name="permission_storage">файл</string>
+    <string name="permission_accounts">Информация</string>
+    <string name="permission_phone">положение дел</string>
+    <string name="permission_location">Локация</string>
+    <string name="permission_audio">Аудио</string>
+</resources>
