@@ -50,6 +50,7 @@ public class Main1Fragment extends Fragment {
 
         // Get reference of WebView from layout/activity_main.xml
         mWebView = (WebView) rootView.findViewById(R.id.webview);
+        WebSettings webSettings = mWebView.getSettings();
 
         setUpWebViewDefaults(mWebView);
 
@@ -67,7 +68,6 @@ public class Main1Fragment extends Fragment {
                     mFilePathCallback.onReceiveValue(null);
                 }
                 mFilePathCallback = filePathCallback;
-                Log.i("WEB", "!@#" + mFilePathCallback.toString());
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // Create the File where the photo should go
@@ -115,7 +115,9 @@ public class Main1Fragment extends Fragment {
 
         // Load the local index.html file
         if (mWebView.getUrl() == null) {
-            mWebView.loadUrl("https://ru.imgbb.com/");
+            assert getArguments() != null;
+            String site = getArguments().getString("URL");
+            mWebView.loadUrl(site);
         }
 
         return rootView;
@@ -162,6 +164,7 @@ public class Main1Fragment extends Fragment {
 
         // Enable pinch to zoom without the zoom buttons
         settings.setBuiltInZoomControls(true);
+        settings.setDomStorageEnabled(true);
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
             // Hide the zoom controls for HONEYCOMB+
@@ -200,11 +203,11 @@ public class Main1Fragment extends Fragment {
                 Log.i("WEB", "@#" + mCameraPhotoPath);
 
                 // If there is not data, then we may have taken a photo
-                if (mCameraPhotoPath != null) {
-                    Log.i("WEB", "@#" + data.getExtras().getString("PhotoPath"));
-
-                    results = new Uri[]{Uri.parse(mCameraPhotoPath)};
-                }
+//                if (mCameraPhotoPath != null) {
+//                    Log.i("WEB", "@#" + data.getExtras().getString("PhotoPath"));
+//
+//                    results = new Uri[]{Uri.parse(mCameraPhotoPath)};
+//                }
             } else {
                 String dataString = data.getDataString();
                 if (dataString != null) {

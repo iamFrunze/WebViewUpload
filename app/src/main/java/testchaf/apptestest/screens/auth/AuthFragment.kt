@@ -15,6 +15,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         btn_next_auth.setOnClickListener {
             findNavController().navigate(R.id.choosePeopleFragment)
         }
+        text_view_login.setOnClickListener {
+            findNavController().navigate(R.id.choosePeopleFragment)
+        }
     }
 
 }

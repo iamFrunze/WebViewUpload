@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.CookieManager;
@@ -93,7 +94,6 @@ public class MainActivity extends Activity
         });
 
         fixDirPath();
-
         // target your url here.
         mWebView.loadUrl("https://ru.imgbb.com/");
     }
@@ -166,6 +166,8 @@ public class MainActivity extends Activity
     }
 
     public void showOptions() {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setOnCancelListener(new DialogOnCancelListener());
 
@@ -224,18 +226,18 @@ public class MainActivity extends Activity
                                 }
                             }
 
-//                            try {
+                            try {
                                 mSourceIntent = ImageUtil.takeBigPicture();
                                 startActivityForResult(mSourceIntent, REQUEST_CODE_IMAGE_CAPTURE);
 
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                                Toast.makeText(MainActivity.this,
-//                                        "5Перейдите в «Настройки», чтобы разрешить доступ к камере и мультимедиа с изображениями для этого приложения.",
-//                                        Toast.LENGTH_SHORT).show();
-//
-//                                restoreUploadMsg();
-//                            }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(MainActivity.this,
+                                        "5Перейдите в «Настройки», чтобы разрешить доступ к камере и мультимедиа с изображениями для этого приложения.",
+                                        Toast.LENGTH_SHORT).show();
+
+                                restoreUploadMsg();
+                            }
                         }
                     }
                 }

@@ -8,6 +8,7 @@ import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import testchaf.apptestest.R
 import testchaf.apptestest.screens.second.Main1Fragment
+import testchaf.apptestest.screens.test.MainActivity
 
 
 class SplashFragment : MvpAppCompatFragment(R.layout.fragment_splash), SplashView {
@@ -23,10 +24,10 @@ class SplashFragment : MvpAppCompatFragment(R.layout.fragment_splash), SplashVie
         val bundle = Bundle()
         bundle.putString("URL", url)
         Thread.sleep(1000)
-//        val intent = Intent(requireContext(), Main1Fragment::class.java)
+//        val intent = Intent(requireContext(), MainActivity::class.java)
 //        intent.putExtra("URL", url)
 //        startActivity(intent)
-        findNavController().navigate(R.id.main1Fragment)
+        findNavController().navigate(R.id.main1Fragment, bundle)
     }
 
     override fun openCustom() {
